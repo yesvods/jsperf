@@ -64,6 +64,7 @@ map is 2.16e+4x faster than indexOf
 * 每次循环往字符串上加字符
 * 先加到tmp数组，再join
 
+```
 //得分：
 substring x 42,357,235 ops/sec ±1.77% (81 runs sampled)
 += x 448,126 ops/sec ±0.98% (83 runs sampled)
