@@ -9,6 +9,7 @@
   "author": "Jogis",
   "license": "MIT",
   "devDependencies": {
-    "benchmark": "^2.1.4"
+    "benchmark": "^2.1.4",
+    "lodash": "^4.17.4"
   }
 }

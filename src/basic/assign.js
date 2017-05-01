@@ -1,5 +1,5 @@
-var Benchmark = require('benchmark');
-var suite = new Benchmark.Suite;
+var Suite = require('../suite')
+var s = new Suite()
 
 class C {
   constructor(){
@@ -24,16 +24,11 @@ const S = () => {
 const c = new C()
 const sFn = S()
 
-suite.add('assign to class context', function() {
+s
+.add('assign to class context', function() {
   c.do()
 })
 .add('assign to fn scope', function() {
   sFn()
 })
-.on('cycle', function(event) {
-  console.log(String(event.target));
-})
-.on('complete', function() {
-  console.log('Fastest is ' + this.filter('fastest').map('name'));
-})
-.run({ 'async': true });
+.run();
