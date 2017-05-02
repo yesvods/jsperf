@@ -1,5 +1,19 @@
 ## JS性能研究
 
+### 性能基准
+`src/basic/blank`
+
+```
+//得分：
+blank x 94,854,163 ops/sec ±1.39% (88 runs sampled)
+blank x 93,090,362 ops/sec ±2.17% (87 runs sampled)
+blank is 1.02x faster than blank
+```
+
+#### 结论
+本机器运行测试性能基准约为94,000,000 ops/sec
+
+
 ### 类的上下文赋值 vs 函数Scope赋值
 `src/basic/assign`
 
@@ -74,3 +88,62 @@ substring is 97.0x faster than arrayJoin
 
 #### 结论
 通过substring获取字符串子集有 97x 性能提升
+
+
+### CharAt & CharCodeAt性能对比
+`src/method/charAt.js`
+
+
+```
+//得分：
+charAt x 75,476,300 ops/sec ±1.55% (83 runs sampled)
+charCodeAt x 30,779,466 ops/sec ±1.07% (82 runs sampled)
+charAt is 2.45x faster than charCodeAt
+```
+
+#### 结论
+CharAt比CharCodeAt提升 2.45x 性能
+
+### typeof 性能测评
+`src/method/typeof.js`
+
+
+```
+//得分：
+typeof x 89,144,794 ops/sec ±1.70% (87 runs sampled)
+typeof x 89,337,454 ops/sec ±1.54% (88 runs sampled)
+typeof is 1.00x faster than typeof
+```
+
+#### 结论
+typeof属于原生基本操作，速度炒鸡快，基本无视性能使用
+
+
+### == / === 性能测评
+`src/basic/equal.js`
+
+
+```
+//得分：
+=== x 90,951,007 ops/sec ±1.63% (86 runs sampled)
+== x 92,248,630 ops/sec ±1.37% (85 runs sampled)
+== is 1.01x faster than ===
+```
+
+#### 结论
+经多次测试，=== / ==，性能基本一致，原生基本预算符，速度炒鸡快，基本无视性能使用
+
+
+### 基于typeof的类型判断函数 性能测评
+`src/method/isString.js`
+
+
+```
+//得分：
+isString x 60,567,982 ops/sec ±1.79% (86 runs sampled)
+isString x 68,846,974 ops/sec ±1.05% (87 runs sampled)
+isString is 1.14x faster than isString
+```
+
+#### 结论
+typeof属于原生基本操作，速度炒鸡快，基本无视性能使用
