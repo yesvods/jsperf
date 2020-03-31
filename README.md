@@ -147,3 +147,17 @@ isString is 1.14x faster than isString
 
 #### 结论
 typeof属于原生基本操作，速度炒鸡快，基本无视性能使用
+
+
+### for...of 与 for...in 性能测评
+
+`src/basic/for.js`
+
+```
+// 得分：
+for...in has similar performancem with for...of (1.76x)
+```
+
+#### 结论
+
+最快还是for...in，比for...of会快一倍多，加上有时候会配合entries导致会更慢一些

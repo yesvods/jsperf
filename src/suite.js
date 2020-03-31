@@ -19,7 +19,8 @@ const singleValuate = {
 
 const getCompareResult = (x, valuate) => {
   for (let key in valuate) {
-    if (x < key) {
+    console.log(x, key)
+    if (+x < +key) {
       return valuate[key]
     }
   }
@@ -28,15 +29,14 @@ const getCompareResult = (x, valuate) => {
 
 function compare(base, a, b) {
   let res = ''
-  let x = (a.hz / b.hz).toPrecision(3)
-  let basex = (base / a.hz).toPrecision(3)
-  if (a.name != b.name) {
-    res = `${a.name} ${getCompareResult(x, compareValuate)} ${b.name} (${x}x)`
-    res += '\n'
-    res += `${a.name} ${getCompareResult(basex, singleValuate)} ${b.name} (${basex}x)`
-  } else {
-    res = `${a.name} ${getCompareResult(basex, singleValuate)} ${b.name} (${basex}x)`
-  }
+  let aDivB = (a.hz / b.hz).toPrecision(3)
+  const baseDivA = (base / a.hz).toPrecision(3)
+  const baseDivB = (base / b.hz).toPrecision(3)
+
+  res = `${a.name} ${getCompareResult(aDivB, compareValuate)} ${b.name} (${aDivB}x)`
+  res += `\n${a.name} ${getCompareResult(baseDivA, singleValuate)} (${baseDivA}x)`
+  res += `\n${b.name} ${getCompareResult(baseDivB, singleValuate)} (${baseDivB}x)`
+
   return res
 }
 
